@@ -1,0 +1,4571 @@
+<html>
+
+<head>
+<script language="javascript">
+
+var version=0;
+
+function indentifyBrowser(){
+//broswer sniffer launched body ONLOAD event
+//sets the "version" variable to the browser type.
+	if(navigator.userAgent.indexOf("MSIE 5.01")!=-1) version="IE 5";
+		else if(navigator.userAgent.indexOf("Netscape6/6.01")!=-1) version="Netscape 6.1";
+		else if(navigator.userAgent.indexOf("Mozilla/4.77")!=-1) version="Netscape 4.77";
+		else if(navigator.userAgent.indexOf("Mozilla/4.0")!=-1) version=4;
+	else if(navigator.userAgent.indexOf("Mozilla/3.0")!=-1) version=3;
+	else if(navigator.userAgent.indexOf("Mozilla/2.0")!=-1) version=2;
+	else version=0;	
+}
+	function optionButton_Onclick(p){
+//onclick event for all the radio buttons
+//p is the radio button object
+		if (version=="Netscape 4.77"){		//is this netscape 4.77
+					
+			if(p.name=="frmShip_S_Nam"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+			
+			if(p.name=="frmType"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(p.name=="frmCounty"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(p.name=="frmDecLat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(p.name=="frmDecLong"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}
+		}
+		else{
+			//Netscape 6.1 and IE 5.
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form
+			var isChecked = p.checked
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Return the original values
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+			p.checked = isChecked;
+		}
+	}
+	
+	function setRadioButton(){
+	var optChecked=document.WreckSearch.holdSearchValue.value
+		if (version=="Netscape 4.77"){
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(optChecked=="County"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}	
+		}
+		else{
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form			
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Replace back to the original value
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+	 		
+	 		//optChecked is loaded with the name of the radio button that
+	 		// was used to query the database. 
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			if(optChecked=="County"){
+
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}	
+		}
+	}
+	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Shipwreck Database</title>
+
+
+<meta name="Microsoft Border" content="tb">
+</head>
+<!-- Setup the OBDC Connection Here -->
+
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" ONLOAD="indentifyBrowser();setRadioButton()"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="center"><font size="6"><strong></strong></font><br>
+</p>
+<p align="center">&nbsp;</p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top">
+
+
+
+<p><!-- Begin Search Form Here --> <script language="Javascript"><!--
+
+//  Normally, Javscript functions are places in the header.  But
+//  for debugging purposes, this function is placed near the form
+//  that it manipulates
+function go(strDirection){
+
+   switch (strDirection){
+     case "new":
+       document.WreckSearch.frmStartRow.value = 0
+       break;
+     case "up":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) + Number(document.WreckSearch.frmIncrement.value)
+       break;
+     case "down":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) - Number(document.WreckSearch.frmIncrement.value)
+       break;
+     default :
+       alert("OOPS Internal Error, do not know which direction to go to: " + strDirection )
+   }
+   document.WreckSearch.submit()
+
+}
+//-->
+</script> </p>
+
+<table border="0" width="560" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="100%"><form method="GET" action="" name="WreckSearch" Shipwrecks_Database.asp"" >
+      <input type="hidden" name="frmIncrement" value="20"><input type="hidden" name="frmStartRow" value="0"><table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td colspan="2" height="20"><font face="Arial" size="2"><strong>Shipwreck Database Search
+          Form</strong></font></td>
+        </tr>
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Enter word here: </em></font></td>
+          <td align="left" height="20"><input type="text" name="frmQuery" size="33" value="monterey" style="font-family: Arial, serif; font-size: 10pt"> <font size="2"><strong><em><a href="javascript:go('new')">Search!</a></em></strong></font></td>
+
+        </tr>
+        <tr>
+          <td align="right"><font size="2" color="#800000"><em>Search field(s): </em></font></td>
+          <td align="left"><table border="0">
+            <tr>
+            	
+                <td>
+				<input name=holdSearchValue type=hidden value=County>   				
+	           <td><font face="Arial" size="1"><input type="radio" name="frmShip_S_Nam" value="x" onclick=optionButton_Onclick(this)>Ship Name</font></td>
+
+	       	 <td><font face="Arial" size="1"><input type="radio" name="frmType" value="x" onclick=optionButton_Onclick(this)>Type</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmCounty" value="x" onclick=optionButton_Onclick(this)>County</font></td>  
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLat" value="x"  onclick=optionButton_Onclick(this)>Dec Latitude</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLong" value="x" onclick=optionButton_Onclick(this)>Dec Longitude</font></td>
+            </tr>
+          </table></td>
+        </tr>
+
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Sort by: </em></font></td>
+          <td align="left" height="20"><select name="frmOrderBy" size="1" style="font-family: Arial, sans-serif; font-size: 10pt">
+            <option  selected  value="[ship's name]">Ship's Name</option>
+            <option  value="type">Type</option>
+            <option  value="Latitude">Dec Latitude</option>
+            <option  value="Longitude">Dec Longitude</option>
+
+            <option  value="county">County</option>
+          </select><select name="frmOrderDirection" size="1">
+            <option  selected  value="ASC">Ascending</option>
+            <option  value="DESC">Descending</option>
+          </select><!-- Begin Summary Table Here --></td>
+        </tr>
+      </table>
+
+    </form>
+    </td>
+  </tr>
+</table>
+
+<p>
+ </p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><strong><font face="Arial" size="2">Search Results</font></strong> </td>
+
+    <td height="20" align="center"></td>
+  </tr>
+  <tr>
+    <td height="20"><font size="1">Showing rows 1 to 20 out of a total of 37 records. </font></td>
+    <td height="20" align="center"><font size="1"> <a href="javascript:go('up')">Next 20 records</a>  </font><!-- Begin Results Table Here --></td>
+  </tr>
+</table><table border="0" width="100%" cellspacing="0" cellpadding="2">
+
+<!--  Column Headers -->
+  <tr>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Ship's
+    Name</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Type</font></td>
+	<td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Built</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Sunk</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Cause</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Owner</font></td>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Captin</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Length</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Beam</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Tonage</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Engine</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1"><font color="#FF0000">*</font>County</font></td>
+        <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Latitude</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Longitude</font></td>
+
+  </tr>
+<!-- Begin Detail -->
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Suction barge</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1990</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Flooded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">240 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">none</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 39'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 55'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">American Clipper</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1948</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 47'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 50'00'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Aurora</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Four Masted Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1901</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1935</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Allen Knight</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1211</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 36'15'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 52'20'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Babinda</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Gas screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1919</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1923</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Ocean Motorship Company</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">269 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">49 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">2483</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 18'24'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'48'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Celia</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1884</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1906</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Newman</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">173</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 36'36'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 57'24'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">CG 256</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Cutter</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1933</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">U.S. Coast Guard</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Nichol, M. E.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">75 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 37'10'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 56'35'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Commodore Rogers</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Whaler</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1837</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Storm</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">T & A Nye, of New Bedford</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Howland, Henry S.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">298</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 47'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 50'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Fallmouth</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1874</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Abandoned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 16'40'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 10'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Flavel</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1917</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1923</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Johnson, H.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">967</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 34'50'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 58'45'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Forty Fathoms</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1949</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 47'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 50'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Frank Lawrence</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Gas screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1886</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1946</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Foundered</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">58</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 18'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 05'00'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">G C Lindauer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1901</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1921</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">453</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 18'24'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'48'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Gipsy</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam screw</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1868</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1905</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Pacific Coast Steamship Co.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Boyd, Thomas</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">239</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 36'28'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'35'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Howard Olson</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Lumber schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1956</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">collision</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Oliver J Olson Co.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">253 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">2477</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 18'24'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 56'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Ida May</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Gas screw</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1908</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1930</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">62</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 37'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 54'50'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">J B Stetson</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1905</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1934</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">William Gissler Jr.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Hubner, F. W.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">837</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 34'48'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 58'40'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Juanita</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1947</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 36'10'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'20'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Julius Pringle</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1863</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 36'10'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'20'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Los Angeles</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1866</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1894</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Pacific Coast Steamship Co.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Leland, Herman</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">107 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">27.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">495</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 18'24'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 53'48'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Macon</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Dirigible</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1935</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Storm</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">U.S. Navy</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">785 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">144 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">8 500hp Maybachs</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Monterey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">36deg 07'55'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 43'10'W</font></td>
+
+  </tr>
+
+<!-- End Detail -->
+</table>
+
+<p><font size="1">Showing rows 1 to 20 out of a total of 37 records. </font> <font size="1"> <a href="javascript:go('up')">Next 20
+records</a>  </font> 
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+
+
+</td></tr><!--msnavigation--></table></body>
+
+</html>
+<html>
+
+<head>
+<script language="javascript">
+
+var version=0;
+
+function indentifyBrowser(){
+//broswer sniffer launched body ONLOAD event
+//sets the "version" variable to the browser type.
+	if(navigator.userAgent.indexOf("MSIE 5.01")!=-1) version="IE 5";
+		else if(navigator.userAgent.indexOf("Netscape6/6.01")!=-1) version="Netscape 6.1";
+		else if(navigator.userAgent.indexOf("Mozilla/4.77")!=-1) version="Netscape 4.77";
+		else if(navigator.userAgent.indexOf("Mozilla/4.0")!=-1) version=4;
+	else if(navigator.userAgent.indexOf("Mozilla/3.0")!=-1) version=3;
+	else if(navigator.userAgent.indexOf("Mozilla/2.0")!=-1) version=2;
+	else version=0;	
+}
+	function optionButton_Onclick(p){
+//onclick event for all the radio buttons
+//p is the radio button object
+		if (version=="Netscape 4.77"){		//is this netscape 4.77
+					
+			if(p.name=="frmShip_S_Nam"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+			
+			if(p.name=="frmType"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(p.name=="frmCounty"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(p.name=="frmDecLat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(p.name=="frmDecLong"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}
+		}
+		else{
+			//Netscape 6.1 and IE 5.
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form
+			var isChecked = p.checked
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Return the original values
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+			p.checked = isChecked;
+		}
+	}
+	
+	function setRadioButton(){
+	var optChecked=document.WreckSearch.holdSearchValue.value
+		if (version=="Netscape 4.77"){
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(optChecked=="County"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}	
+		}
+		else{
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form			
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Replace back to the original value
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+	 		
+	 		//optChecked is loaded with the name of the radio button that
+	 		// was used to query the database. 
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			if(optChecked=="County"){
+
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}	
+		}
+	}
+	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Shipwreck Database</title>
+
+
+<meta name="Microsoft Border" content="tb">
+</head>
+<!-- Setup the OBDC Connection Here -->
+
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" ONLOAD="indentifyBrowser();setRadioButton()"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="center"><font size="6"><strong></strong></font><br>
+</p>
+<p align="center">&nbsp;</p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top">
+
+
+
+<p><!-- Begin Search Form Here --> <script language="Javascript"><!--
+
+//  Normally, Javscript functions are places in the header.  But
+//  for debugging purposes, this function is placed near the form
+//  that it manipulates
+function go(strDirection){
+
+   switch (strDirection){
+     case "new":
+       document.WreckSearch.frmStartRow.value = 0
+       break;
+     case "up":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) + Number(document.WreckSearch.frmIncrement.value)
+       break;
+     case "down":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) - Number(document.WreckSearch.frmIncrement.value)
+       break;
+     default :
+       alert("OOPS Internal Error, do not know which direction to go to: " + strDirection )
+   }
+   document.WreckSearch.submit()
+
+}
+//-->
+</script> </p>
+
+<table border="0" width="560" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="100%"><form method="GET" action="" name="WreckSearch" Shipwrecks_Database.asp"" >
+      <input type="hidden" name="frmIncrement" value="20"><input type="hidden" name="frmStartRow" value="0"><table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td colspan="2" height="20"><font face="Arial" size="2"><strong>Shipwreck Database Search
+          Form</strong></font></td>
+        </tr>
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Enter word here: </em></font></td>
+          <td align="left" height="20"><input type="text" name="frmQuery" size="33" value="yolo" style="font-family: Arial, serif; font-size: 10pt"> <font size="2"><strong><em><a href="javascript:go('new')">Search!</a></em></strong></font></td>
+
+        </tr>
+        <tr>
+          <td align="right"><font size="2" color="#800000"><em>Search field(s): </em></font></td>
+          <td align="left"><table border="0">
+            <tr>
+            	
+                <td>
+				<input name=holdSearchValue type=hidden value=County>   				
+	           <td><font face="Arial" size="1"><input type="radio" name="frmShip_S_Nam" value="x" onclick=optionButton_Onclick(this)>Ship Name</font></td>
+
+	       	 <td><font face="Arial" size="1"><input type="radio" name="frmType" value="x" onclick=optionButton_Onclick(this)>Type</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmCounty" value="x" onclick=optionButton_Onclick(this)>County</font></td>  
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLat" value="x"  onclick=optionButton_Onclick(this)>Dec Latitude</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLong" value="x" onclick=optionButton_Onclick(this)>Dec Longitude</font></td>
+            </tr>
+          </table></td>
+        </tr>
+
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Sort by: </em></font></td>
+          <td align="left" height="20"><select name="frmOrderBy" size="1" style="font-family: Arial, sans-serif; font-size: 10pt">
+            <option  selected  value="[ship's name]">Ship's Name</option>
+            <option  value="type">Type</option>
+            <option  value="Latitude">Dec Latitude</option>
+            <option  value="Longitude">Dec Longitude</option>
+
+            <option  value="county">County</option>
+          </select><select name="frmOrderDirection" size="1">
+            <option  selected  value="ASC">Ascending</option>
+            <option  value="DESC">Descending</option>
+          </select><!-- Begin Summary Table Here --></td>
+        </tr>
+      </table>
+
+    </form>
+    </td>
+  </tr>
+</table>
+
+<p>
+ </p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><strong><font face="Arial" size="2">Search Results</font></strong> </td>
+
+    <td height="20" align="center"></td>
+  </tr>
+  <tr>
+    <td height="20"><font size="1">Showing rows 1 to 12 out of a total of 12 records. </font></td>
+    <td height="20" align="center"><font size="1"> </font><!-- Begin Results Table Here --></td>
+  </tr>
+</table><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<!--  Column Headers -->
+  <tr>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Ship's
+    Name</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Type</font></td>
+	<td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Built</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Sunk</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Cause</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Owner</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Captin</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Length</font></td>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Beam</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Tonage</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Engine</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1"><font color="#FF0000">*</font>County</font></td>
+        <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Latitude</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Longitude</font></td>
+  </tr>
+
+<!-- Begin Detail -->
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Alviso</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sidewheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1896</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1920</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">197</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 36'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 34'04'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Colusa</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1911</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">795</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'12'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'36'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Flora</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1885</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">185</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Jacinto</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1889</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">235</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Marie</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Gas screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1920</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1925</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">161</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 48'12'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 43'00'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">New World</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steamship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1854</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Snagged</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 28'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Pet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steamship</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1866</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1870</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Snagged</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">McNair & Brewer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">McNair</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">35</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Sacramento</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1914</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">760</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">San Joaquin #2</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1875</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">242</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">San Joaquin #4</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1885</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">365</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">San Jose</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1898</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">192</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Valetta</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sternwheel Steamboat</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1901</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1932</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">419</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Yolo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38deg 35'15'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121deg 30'30'W</font></td>
+  </tr>
+
+<!-- End Detail -->
+</table>
+
+<p><font size="1">Showing rows 1 to 12 out of a total of 12 records. </font> <font size="1"> </font> 
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+
+
+</td></tr><!--msnavigation--></table></body>
+</html>
+<html>
+
+<head>
+<script language="javascript">
+
+var version=0;
+
+function indentifyBrowser(){
+//broswer sniffer launched body ONLOAD event
+//sets the "version" variable to the browser type.
+	if(navigator.userAgent.indexOf("MSIE 5.01")!=-1) version="IE 5";
+		else if(navigator.userAgent.indexOf("Netscape6/6.01")!=-1) version="Netscape 6.1";
+		else if(navigator.userAgent.indexOf("Mozilla/4.77")!=-1) version="Netscape 4.77";
+		else if(navigator.userAgent.indexOf("Mozilla/4.0")!=-1) version=4;
+	else if(navigator.userAgent.indexOf("Mozilla/3.0")!=-1) version=3;
+	else if(navigator.userAgent.indexOf("Mozilla/2.0")!=-1) version=2;
+	else version=0;	
+}
+	function optionButton_Onclick(p){
+//onclick event for all the radio buttons
+//p is the radio button object
+		if (version=="Netscape 4.77"){		//is this netscape 4.77
+					
+			if(p.name=="frmShip_S_Nam"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+			
+			if(p.name=="frmType"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(p.name=="frmCounty"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(p.name=="frmDecLat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(p.name=="frmDecLong"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}
+		}
+		else{
+			//Netscape 6.1 and IE 5.
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form
+			var isChecked = p.checked
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Return the original values
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+			p.checked = isChecked;
+		}
+	}
+	
+	function setRadioButton(){
+	var optChecked=document.WreckSearch.holdSearchValue.value
+		if (version=="Netscape 4.77"){
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(optChecked=="County"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}	
+		}
+		else{
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form			
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Replace back to the original value
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+	 		
+	 		//optChecked is loaded with the name of the radio button that
+	 		// was used to query the database. 
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			if(optChecked=="County"){
+
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}	
+		}
+	}
+	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Shipwreck Database</title>
+
+
+<meta name="Microsoft Border" content="tb">
+</head>
+<!-- Setup the OBDC Connection Here -->
+
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" ONLOAD="indentifyBrowser();setRadioButton()"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="center"><font size="6"><strong></strong></font><br>
+</p>
+<p align="center">&nbsp;</p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top">
+
+
+
+<p><!-- Begin Search Form Here --> <script language="Javascript"><!--
+
+//  Normally, Javscript functions are places in the header.  But
+//  for debugging purposes, this function is placed near the form
+//  that it manipulates
+function go(strDirection){
+
+   switch (strDirection){
+     case "new":
+       document.WreckSearch.frmStartRow.value = 0
+       break;
+     case "up":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) + Number(document.WreckSearch.frmIncrement.value)
+       break;
+     case "down":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) - Number(document.WreckSearch.frmIncrement.value)
+       break;
+     default :
+       alert("OOPS Internal Error, do not know which direction to go to: " + strDirection )
+   }
+   document.WreckSearch.submit()
+
+}
+//-->
+</script> </p>
+
+<table border="0" width="560" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="100%"><form method="GET" action="" name="WreckSearch" Shipwrecks_Database.asp"" >
+      <input type="hidden" name="frmIncrement" value="20"><input type="hidden" name="frmStartRow" value="0"><table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td colspan="2" height="20"><font face="Arial" size="2"><strong>Shipwreck Database Search
+          Form</strong></font></td>
+        </tr>
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Enter word here: </em></font></td>
+          <td align="left" height="20"><input type="text" name="frmQuery" size="33" value="san francisco" style="font-family: Arial, serif; font-size: 10pt"> <font size="2"><strong><em><a href="javascript:go('new')">Search!</a></em></strong></font></td>
+
+        </tr>
+        <tr>
+          <td align="right"><font size="2" color="#800000"><em>Search field(s): </em></font></td>
+          <td align="left"><table border="0">
+            <tr>
+            	
+                <td>
+				<input name=holdSearchValue type=hidden value=County>   				
+	           <td><font face="Arial" size="1"><input type="radio" name="frmShip_S_Nam" value="x" onclick=optionButton_Onclick(this)>Ship Name</font></td>
+
+	       	 <td><font face="Arial" size="1"><input type="radio" name="frmType" value="x" onclick=optionButton_Onclick(this)>Type</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmCounty" value="x" onclick=optionButton_Onclick(this)>County</font></td>  
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLat" value="x"  onclick=optionButton_Onclick(this)>Dec Latitude</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLong" value="x" onclick=optionButton_Onclick(this)>Dec Longitude</font></td>
+            </tr>
+          </table></td>
+        </tr>
+
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Sort by: </em></font></td>
+          <td align="left" height="20"><select name="frmOrderBy" size="1" style="font-family: Arial, sans-serif; font-size: 10pt">
+            <option  selected  value="[ship's name]">Ship's Name</option>
+            <option  value="type">Type</option>
+            <option  value="Latitude">Dec Latitude</option>
+            <option  value="Longitude">Dec Longitude</option>
+
+            <option  value="county">County</option>
+          </select><select name="frmOrderDirection" size="1">
+            <option  selected  value="ASC">Ascending</option>
+            <option  value="DESC">Descending</option>
+          </select><!-- Begin Summary Table Here --></td>
+        </tr>
+      </table>
+
+    </form>
+    </td>
+  </tr>
+</table>
+
+<p>
+ </p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><strong><font face="Arial" size="2">Search Results</font></strong> </td>
+
+    <td height="20" align="center"></td>
+  </tr>
+  <tr>
+    <td height="20"><font size="1">Showing rows 1 to 20 out of a total of 140 records. </font></td>
+    <td height="20" align="center"><font size="1"> <a href="javascript:go('up')">Next 20 records</a>  </font><!-- Begin Results Table Here --></td>
+  </tr>
+</table><table border="0" width="100%" cellspacing="0" cellpadding="2">
+
+<!--  Column Headers -->
+  <tr>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Ship's
+    Name</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Type</font></td>
+	<td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Built</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Sunk</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Cause</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Owner</font></td>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Captin</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Length</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Beam</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Tonage</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Engine</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1"><font color="#FF0000">*</font>County</font></td>
+        <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Latitude</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Longitude</font></td>
+
+  </tr>
+<!-- Begin Detail -->
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Aberdeen</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Three Masted Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1847</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1852</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">154 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">32.4 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">718</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'43'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'03'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Aberdeen</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1899</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1916</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Fred Lindeman</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Knudson, Peter</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">170 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">34 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">499</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">425 hp compound steam</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 45'00'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Aeine</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Gas screw</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1913</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Aimeer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1870</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1871</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">86 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">26 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">96.25</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'17'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'28'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Albert Harris</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Pilot schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1850</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 45'00'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 35'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Alice Garrett</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1888</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Parted moorings</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'50'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'30'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Amazon</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Lumber schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1865</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'45'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'45'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Ann Perry</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Bark</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1825</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1865</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Capt. Chase</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Trask</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">107 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">27 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">348</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'37'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'45'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Anna Schafer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1940</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Schafer Bros. Logging Co.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Apollo</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Packet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1831</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1851</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">121 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">27 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">422</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'38'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'56'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Atlantic</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Whaling bark</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1851</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1886</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">J. and William R. Wing</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Warren</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">116.2 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">26.3 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">292</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'50'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'31'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Autocrat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1859</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1868</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Foundered</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1130</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'45'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 26'25'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Benevolence</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Hospital ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1945</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1950</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">520 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">71 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">13330</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">dual-cyl turbine</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'54'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 33'00'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Bessie Everding</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1876</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1888</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Jorgensen</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">73.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">25.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">73.7</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 45'23'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'38'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Bialchi</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Tug boat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1947</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">71 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'05'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 25'10'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Boko Maru</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1939</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Brignardello</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Bark</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1865</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1868</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Brignardello & Bro.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Mazzini</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">543</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'41'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'48'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Caleb Curtis</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Pilot boat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1867</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Capsized</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Canonicus</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Brig</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1853</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'40'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'10'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Carlota</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1850</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 25'07'W</font></td>
+  </tr>
+
+<!-- End Detail -->
+
+</table>
+
+<p><font size="1">Showing rows 1 to 20 out of a total of 140 records. </font> <font size="1"> <a href="javascript:go('up')">Next 20
+records</a>  </font> 
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+
+
+</td></tr><!--msnavigation--></table></body>
+</html>
+<html>
+
+<head>
+<script language="javascript">
+
+var version=0;
+
+function indentifyBrowser(){
+//broswer sniffer launched body ONLOAD event
+//sets the "version" variable to the browser type.
+	if(navigator.userAgent.indexOf("MSIE 5.01")!=-1) version="IE 5";
+		else if(navigator.userAgent.indexOf("Netscape6/6.01")!=-1) version="Netscape 6.1";
+		else if(navigator.userAgent.indexOf("Mozilla/4.77")!=-1) version="Netscape 4.77";
+		else if(navigator.userAgent.indexOf("Mozilla/4.0")!=-1) version=4;
+	else if(navigator.userAgent.indexOf("Mozilla/3.0")!=-1) version=3;
+	else if(navigator.userAgent.indexOf("Mozilla/2.0")!=-1) version=2;
+	else version=0;	
+}
+	function optionButton_Onclick(p){
+//onclick event for all the radio buttons
+//p is the radio button object
+		if (version=="Netscape 4.77"){		//is this netscape 4.77
+					
+			if(p.name=="frmShip_S_Nam"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+			
+			if(p.name=="frmType"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(p.name=="frmCounty"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(p.name=="frmDecLat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(p.name=="frmDecLong"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}
+		}
+		else{
+			//Netscape 6.1 and IE 5.
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form
+			var isChecked = p.checked
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Return the original values
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+			p.checked = isChecked;
+		}
+	}
+	
+	function setRadioButton(){
+	var optChecked=document.WreckSearch.holdSearchValue.value
+		if (version=="Netscape 4.77"){
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(optChecked=="County"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}	
+		}
+		else{
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form			
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Replace back to the original value
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+	 		
+	 		//optChecked is loaded with the name of the radio button that
+	 		// was used to query the database. 
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			if(optChecked=="County"){
+
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}	
+		}
+	}
+	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Shipwreck Database</title>
+
+
+<meta name="Microsoft Border" content="tb">
+</head>
+<!-- Setup the OBDC Connection Here -->
+
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" ONLOAD="indentifyBrowser();setRadioButton()"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="center"><font size="6"><strong></strong></font><br>
+</p>
+<p align="center">&nbsp;</p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top">
+
+
+
+<p><!-- Begin Search Form Here --> <script language="Javascript"><!--
+
+//  Normally, Javscript functions are places in the header.  But
+//  for debugging purposes, this function is placed near the form
+//  that it manipulates
+function go(strDirection){
+
+   switch (strDirection){
+     case "new":
+       document.WreckSearch.frmStartRow.value = 0
+       break;
+     case "up":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) + Number(document.WreckSearch.frmIncrement.value)
+       break;
+     case "down":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) - Number(document.WreckSearch.frmIncrement.value)
+       break;
+     default :
+       alert("OOPS Internal Error, do not know which direction to go to: " + strDirection )
+   }
+   document.WreckSearch.submit()
+
+}
+//-->
+</script> </p>
+
+<table border="0" width="560" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="100%"><form method="GET" action="" name="WreckSearch" Shipwrecks_Database.asp"" >
+      <input type="hidden" name="frmIncrement" value="20"><input type="hidden" name="frmStartRow" value="20"><table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td colspan="2" height="20"><font face="Arial" size="2"><strong>Shipwreck Database Search
+          Form</strong></font></td>
+        </tr>
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Enter word here: </em></font></td>
+          <td align="left" height="20"><input type="text" name="frmQuery" size="33" value="san francisco" style="font-family: Arial, serif; font-size: 10pt"> <font size="2"><strong><em><a href="javascript:go('new')">Search!</a></em></strong></font></td>
+
+        </tr>
+        <tr>
+          <td align="right"><font size="2" color="#800000"><em>Search field(s): </em></font></td>
+          <td align="left"><table border="0">
+            <tr>
+            	
+                <td>
+				<input name=holdSearchValue type=hidden value=County>   				
+	           <td><font face="Arial" size="1"><input type="radio" name="frmShip_S_Nam" value="x" onclick=optionButton_Onclick(this)>Ship Name</font></td>
+
+	       	 <td><font face="Arial" size="1"><input type="radio" name="frmType" value="x" onclick=optionButton_Onclick(this)>Type</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmCounty" value="x" onclick=optionButton_Onclick(this)>County</font></td>  
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLat" value="x"  onclick=optionButton_Onclick(this)>Dec Latitude</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLong" value="x" onclick=optionButton_Onclick(this)>Dec Longitude</font></td>
+            </tr>
+          </table></td>
+        </tr>
+
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Sort by: </em></font></td>
+          <td align="left" height="20"><select name="frmOrderBy" size="1" style="font-family: Arial, sans-serif; font-size: 10pt">
+            <option  selected  value="[ship's name]">Ship's Name</option>
+            <option  value="type">Type</option>
+            <option  value="Latitude">Dec Latitude</option>
+            <option  value="Longitude">Dec Longitude</option>
+
+            <option  value="county">County</option>
+          </select><select name="frmOrderDirection" size="1">
+            <option  selected  value="ASC">Ascending</option>
+            <option  value="DESC">Descending</option>
+          </select><!-- Begin Summary Table Here --></td>
+        </tr>
+      </table>
+
+    </form>
+    </td>
+  </tr>
+</table>
+
+<p>
+ </p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><strong><font face="Arial" size="2">Search Results</font></strong> </td>
+
+    <td height="20" align="center"></td>
+  </tr>
+  <tr>
+    <td height="20"><font size="1">Showing rows 21 to 40 out of a total of 140 records. </font></td>
+    <td height="20" align="center"><font size="1"> <a href="javascript:go('down')">Last 20
+    records</a> |  <a href="javascript:go('up')">Next 20 records</a>  </font><!-- Begin Results Table Here --></td>
+
+  </tr>
+</table><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<!--  Column Headers -->
+  <tr>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Ship's
+    Name</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Type</font></td>
+	<td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Built</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Sunk</font></td>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Cause</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Owner</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Captin</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Length</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Beam</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Tonage</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Engine</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1"><font color="#FF0000">*</font>County</font></td>
+
+        <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Latitude</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Longitude</font></td>
+  </tr>
+<!-- Begin Detail -->
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Carmel</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1907</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1931</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 42'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'10'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Caroline Amelia</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Three Masted Bark</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1850</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Dresher</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'36'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'30'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Centennial</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'00'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Chateau Palmer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1856</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Missed stays</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Bouteiller</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">800</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'20'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'45'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">City of Chester</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steamship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1875</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1888</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Oregon Railroad Co. (charter PCSS)</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Wallace, Thomas</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">205 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">33 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1106</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'50'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">City of New York</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Iron steamer</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1875</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1893</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Pacific Mail Steamship Company</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Johnson, George (pilot)</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">339 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">40 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">3019</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">compound,6 boilers</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'55'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 31'36'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">City of Peking</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Iron Steamer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1877</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1911</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Abandoned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Bates and Chesebrough</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">none</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">423 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">48 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">5080</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">2 vert. cmpd.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 42'34'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 53'34W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">City of Rio de Janeiro</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Iron steamer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1878</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1901</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Pacific Mail Steamship Company</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Ward, William</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">345 ft</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">39 ft</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">3548</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'24'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'31'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">City of Sydney</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Iron Steamer</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1875</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1930</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Abandoned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">William Manuel</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">none</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">352 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">40 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">3016</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">cmpd. 1900hp</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 42'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 53'30W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Clinton</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sidewheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1854</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1877</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">North Pacific Coast RR Co.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Lucky, Charles</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">194</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">steam</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'45'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 27'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Columbia</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1949</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Columbia</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1882</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'36'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'36'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Coos Bay</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Freighter</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1909</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1927</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Olson, B. W.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">386 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">53 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">5149</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Dual TE.3500hp</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'19'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 29'50'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Cornelius W Lawrence</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Revenue cutter</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1848</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1851</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Storm</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">U S Revenue Service</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Ottinger, Douglass</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">96.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">24 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">144</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'03'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'26'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Costa Rica</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1873</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'18'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 29'54'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Daisy Rowe</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1879</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1900</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Wrecked</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Higgins & Collins</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">94.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">29 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'14'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'14'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Despatch</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1905</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Burned</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'40'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'10'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Dolphin</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam tug</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1890</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Foundered</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'18'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 29'54'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Drumburton</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Four mast ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1881</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1904</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Capt. John Barneson</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Thomas</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">267 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">40 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1881</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'45'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'40'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Dublin</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Bark</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1839</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1882</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Moloney</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">139 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">30.8 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">706.06</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'57'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'33'W</font></td>
+  </tr>
+
+<!-- End Detail -->
+</table>
+
+<p><font size="1">Showing rows 21 to 40 out of a total of 140 records. </font> <font size="1"> <a href="javascript:go('down')">Last 20 records</a> |  <a href="javascript:go('up')">Next 20
+records</a>  </font> 
+
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+
+
+</td></tr><!--msnavigation--></table></body>
+</html>
+<html>
+
+<head>
+<script language="javascript">
+
+var version=0;
+
+function indentifyBrowser(){
+//broswer sniffer launched body ONLOAD event
+//sets the "version" variable to the browser type.
+	if(navigator.userAgent.indexOf("MSIE 5.01")!=-1) version="IE 5";
+		else if(navigator.userAgent.indexOf("Netscape6/6.01")!=-1) version="Netscape 6.1";
+		else if(navigator.userAgent.indexOf("Mozilla/4.77")!=-1) version="Netscape 4.77";
+		else if(navigator.userAgent.indexOf("Mozilla/4.0")!=-1) version=4;
+	else if(navigator.userAgent.indexOf("Mozilla/3.0")!=-1) version=3;
+	else if(navigator.userAgent.indexOf("Mozilla/2.0")!=-1) version=2;
+	else version=0;	
+}
+	function optionButton_Onclick(p){
+//onclick event for all the radio buttons
+//p is the radio button object
+		if (version=="Netscape 4.77"){		//is this netscape 4.77
+					
+			if(p.name=="frmShip_S_Nam"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+			
+			if(p.name=="frmType"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(p.name=="frmCounty"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(p.name=="frmDecLat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(p.name=="frmDecLong"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}
+		}
+		else{
+			//Netscape 6.1 and IE 5.
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form
+			var isChecked = p.checked
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Return the original values
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+			p.checked = isChecked;
+		}
+	}
+	
+	function setRadioButton(){
+	var optChecked=document.WreckSearch.holdSearchValue.value
+		if (version=="Netscape 4.77"){
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			else{
+				document.WreckSearch.frmShip_S_Nam.checked=false;
+			}
+
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			else{
+				document.WreckSearch.frmType.checked=false;
+			}
+			
+			if(optChecked=="County"){
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			else{
+				document.WreckSearch.frmCounty.checked=false;
+			}
+			
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLat.checked=false;
+			}
+			
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}
+			else{
+				document.WreckSearch.frmDecLong.checked=false;
+			}	
+		}
+		else{
+			//place the values from the form into variable before you reset the form
+			//reseting the form clears everything on that form			
+			var holdStr = document.WreckSearch.frmQuery.value
+			var holdSort = document.WreckSearch.frmOrderBy.value
+			var holdSortDir = document.WreckSearch.frmOrderDirection.value
+		
+			
+			//reset the form. this is the only way to unselect the radio buttons in Netscape 6.1
+			document.WreckSearch.reset();
+		
+			//Replace back to the original value
+			document.WreckSearch.frmQuery.value = holdStr
+			document.WreckSearch.frmOrderBy.value = holdSort 
+			document.WreckSearch.frmOrderDirection.value = holdSortDir
+	 		
+	 		//optChecked is loaded with the name of the radio button that
+	 		// was used to query the database. 
+			if(optChecked=="ShipName"){
+				document.WreckSearch.frmShip_S_Nam.checked=true;
+			}
+			if(optChecked=="Type"){
+				document.WreckSearch.frmType.checked=true;
+			}
+			if(optChecked=="County"){
+
+				document.WreckSearch.frmCounty.checked=true;
+			}
+			if(optChecked=="Lat"){
+				document.WreckSearch.frmDecLat.checked=true;
+			}
+			if(optChecked=="Long"){
+				document.WreckSearch.frmDecLong.checked=true;
+			}	
+		}
+	}
+	
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Shipwreck Database</title>
+
+
+<meta name="Microsoft Border" content="tb">
+</head>
+<!-- Setup the OBDC Connection Here -->
+
+
+
+<body topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" ONLOAD="indentifyBrowser();setRadioButton()"><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+<p align="center"><font size="6"><strong></strong></font><br>
+</p>
+<p align="center">&nbsp;</p>
+
+</td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><!--msnavigation--><td valign="top">
+
+
+
+<p><!-- Begin Search Form Here --> <script language="Javascript"><!--
+
+//  Normally, Javscript functions are places in the header.  But
+//  for debugging purposes, this function is placed near the form
+//  that it manipulates
+function go(strDirection){
+
+   switch (strDirection){
+     case "new":
+       document.WreckSearch.frmStartRow.value = 0
+       break;
+     case "up":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) + Number(document.WreckSearch.frmIncrement.value)
+       break;
+     case "down":
+       document.WreckSearch.frmStartRow.value = Number(document.WreckSearch.frmStartRow.value) - Number(document.WreckSearch.frmIncrement.value)
+       break;
+     default :
+       alert("OOPS Internal Error, do not know which direction to go to: " + strDirection )
+   }
+   document.WreckSearch.submit()
+
+}
+//-->
+</script> </p>
+
+<table border="0" width="560" cellspacing="0" cellpadding="0">
+  <tr>
+
+    <td width="100%"><form method="GET" action="" name="WreckSearch" Shipwrecks_Database.asp"" >
+      <input type="hidden" name="frmIncrement" value="20"><input type="hidden" name="frmStartRow" value="40"><table border="0" cellspacing="0" cellpadding="3">
+        <tr>
+          <td colspan="2" height="20"><font face="Arial" size="2"><strong>Shipwreck Database Search
+          Form</strong></font></td>
+        </tr>
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Enter word here: </em></font></td>
+          <td align="left" height="20"><input type="text" name="frmQuery" size="33" value="san francisco" style="font-family: Arial, serif; font-size: 10pt"> <font size="2"><strong><em><a href="javascript:go('new')">Search!</a></em></strong></font></td>
+
+        </tr>
+        <tr>
+          <td align="right"><font size="2" color="#800000"><em>Search field(s): </em></font></td>
+          <td align="left"><table border="0">
+            <tr>
+            	
+                <td>
+				<input name=holdSearchValue type=hidden value=County>   				
+	           <td><font face="Arial" size="1"><input type="radio" name="frmShip_S_Nam" value="x" onclick=optionButton_Onclick(this)>Ship Name</font></td>
+
+	       	 <td><font face="Arial" size="1"><input type="radio" name="frmType" value="x" onclick=optionButton_Onclick(this)>Type</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmCounty" value="x" onclick=optionButton_Onclick(this)>County</font></td>  
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLat" value="x"  onclick=optionButton_Onclick(this)>Dec Latitude</font></td>
+              <td><font face="Arial" size="1"><input type="radio" name="frmDecLong" value="x" onclick=optionButton_Onclick(this)>Dec Longitude</font></td>
+            </tr>
+          </table></td>
+        </tr>
+
+        <tr>
+          <td align="right" height="20"><font size="2" color="#800000"><em>Sort by: </em></font></td>
+          <td align="left" height="20"><select name="frmOrderBy" size="1" style="font-family: Arial, sans-serif; font-size: 10pt">
+            <option  selected  value="[ship's name]">Ship's Name</option>
+            <option  value="type">Type</option>
+            <option  value="Latitude">Dec Latitude</option>
+            <option  value="Longitude">Dec Longitude</option>
+
+            <option  value="county">County</option>
+          </select><select name="frmOrderDirection" size="1">
+            <option  selected  value="ASC">Ascending</option>
+            <option  value="DESC">Descending</option>
+          </select><!-- Begin Summary Table Here --></td>
+        </tr>
+      </table>
+
+    </form>
+    </td>
+  </tr>
+</table>
+
+<p>
+ </p>
+
+<table border="0" width="100%" cellspacing="0" cellpadding="0">
+  <tr>
+    <td height="20"><strong><font face="Arial" size="2">Search Results</font></strong> </td>
+
+    <td height="20" align="center"></td>
+  </tr>
+  <tr>
+    <td height="20"><font size="1">Showing rows 41 to 60 out of a total of 140 records. </font></td>
+    <td height="20" align="center"><font size="1"> <a href="javascript:go('down')">Last 20
+    records</a> |  <a href="javascript:go('up')">Next 20 records</a>  </font><!-- Begin Results Table Here --></td>
+
+  </tr>
+</table><table border="0" width="100%" cellspacing="0" cellpadding="2">
+<!--  Column Headers -->
+  <tr>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Ship's
+    Name</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Type</font></td>
+	<td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Built</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Year Sunk</font></td>
+
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Cause</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Owner</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Captin</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Length</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Beam</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Tonage</font></td>
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Engine</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1"><font color="#FF0000">*</font>County</font></td>
+
+        <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Latitude</font></td>        
+    <td width="7%" bgcolor="#CAB19B"><font face="Arial" size="1">Longitude</font></td>
+  </tr>
+<!-- Begin Detail -->
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Eliza</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Fishing sloop</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1871</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">10.2</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'54'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'52'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Elko</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Scow Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1868</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1881</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Captain Madsen</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">96.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">32 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">148</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'22'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'11'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Ellen F</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Salvage ship</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1936</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Broke up</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'40'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Escambia</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam screw bark</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1879</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1882</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Overloaded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Purvis</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">291 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">210 hp</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'30'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 33'31'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Eureka</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Steam Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1900</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1915</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Capsized</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">North Pacific Steamship Company</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">142.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">26 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">484</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Dbl.compound,2751 hp</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'55'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 31'42'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Eustace</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1881</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Explosion</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Hornsby</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'00'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'00'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Exchange</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Barge</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1868</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1876</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">storm</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">George W. Hooper</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Hunt, George</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">130.4</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">F W Bailey</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1854</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1863</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">C Cushing & Company</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Dyer, Lemuel P.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">160 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">33.3 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">711</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 44'28'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'29'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Fannie Adele</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Three Masted Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1883</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1904</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Explosion</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">234</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 46'05'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'00'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Fernstream</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Brig</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1952</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Kristensen</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">416 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">4980</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'12'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 27'29'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Flying Dragon</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Clipper</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1853</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1862</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Watson, Horace H.</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1127</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'45'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 26'25'W</font></td>
+
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Frank H Buck</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Tanker</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1913</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1937</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Union Oil Company</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Kelly, R. W.</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">408 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">55.5 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">6076</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'20'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'18'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+
+<p><font face="Arial" size="1">Frank Jones</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Three Masted Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1874</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1877</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Stranded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Nickles, James N.</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">203 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">40 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1452</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'25'N</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'39'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">General Cushing</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Ship</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1856</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1858</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Dow,Varina,Hale,Davis and Morss</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Varina, Nicholas</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">150 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">31.5 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">681</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'37'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'39'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">George Louis</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Two Masted Schooner</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1863</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1882</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Erickson</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">60.7 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">21.3 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">40</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 47'19'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 30'03'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Goddess</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1865</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 49'01'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 24'01'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Golden Fleece</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Clipper</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1852</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1854</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Missed stays, grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">Freeman</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">173 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">35 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">968</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'39'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'40'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Golden Rule</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1874</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Collision</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">sail</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'25'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'08'W</font></td>
+  </tr>
+
+  <tr>
+
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Granada</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Sidewheel Steamboat</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1855</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1860</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Grounded</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">U S Mail Steamship Company</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">228 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">31 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1058</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Vert.Beam Steamer</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 48'32'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 28'14'W</font></td>
+  </tr>
+
+  <tr>
+    <td width="7%"  bgcolor="#D9ECEC">
+<p><font face="Arial" size="1">Grays Harbor</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">Steam schooner</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">1907</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">1931</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">172 feet</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">38 feet</font></td>
+
+    <td width="7%" 
+<p><font face="Arial" size="1">659</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1"></font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">San Francisco</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">37deg 42'30'N</font></td>
+    <td width="7%" 
+<p><font face="Arial" size="1">122deg 23'10'W</font></td>
+  </tr>
+
+<!-- End Detail -->
+</table>
+
+<p><font size="1">Showing rows 41 to 60 out of a total of 140 records. </font> <font size="1"> <a href="javascript:go('down')">Last 20 records</a> |  <a href="javascript:go('up')">Next 20
+records</a>  </font> 
+<!--msnavigation--></td></tr><!--msnavigation--></table><!--msnavigation--><table border="0" cellpadding="0" cellspacing="0" width="100%"><tr><td>
+
+
+
+</td></tr><!--msnavigation--></table></body>
+
+</html>
+
